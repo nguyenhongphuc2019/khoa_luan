@@ -10,6 +10,14 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id="wrapper">
+      <%= render 'shared/nav' %>
+      <%= render 'shared/sidebar' %>
+      <!-- MAIN -->
+      <%= yield %>
+      <!-- END MAIN -->
+      <div class="clearfix"></div>
+      <%= render 'shared/footer' %>
+    </div>
   </body>
 </html>
