@@ -2,45 +2,10 @@
 	<!-- MAIN CONTENT -->
 	<div class="main-content">
 		<div class="container-fluid">
-			
 			<!-- END OVERVIEW -->
 			<div class="row">
-				<div class="col-md-4">
-					<div class="panel">
-						<div class="panel-heading">
-							<h3 class="panel-title">To-Do List</h3>
-						</div>
-						<div class="panel-body">
-							1das
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="panel">
-						<div class="panel-heading">
-							<h3 class="panel-title">To-Do List</h3>
-						</div>
-						<div class="panel-body">
-							1das
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="panel">
-						<div class="panel-heading">
-							<h3 class="panel-title">To-Do List</h3>
-						</div>
-						<div class="panel-body">
-							1das
-						</div>
-					</div>
-				</div>
-				
+				<%= render partial: 'main_category', collection: load_main_category, as: :category %>
 			</div>
-		
-			
 		</div>
 	</div>
 	<!-- END MAIN CONTENT -->

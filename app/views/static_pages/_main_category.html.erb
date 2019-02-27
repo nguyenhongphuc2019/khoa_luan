@@ -1,0 +1,20 @@
+<div class="col-md-4">
+  <div class="panel">
+    <div class="panel-body no-padding <%= category.background %>-gradient color-white text-center text-uppercase">
+      <div class="padding-top-30 padding-bottom-30">
+        <h2 class="panel-title fw-bold">
+          <%= category.name %>
+        </h2>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="height-50">
+        <%= render partial: 'sub_category', collection: load_sub_category(category.id), as: :sub_category %>
+      </div>
+      <h4 class="text-info">
+        <%= fa_icon "book" %> Tài liệu nổi bật
+      </h4>
+      <p> skills before an expanded array of infomediaries. Monotonectally incubate web-enabled communities rather than process-centric.</p>
+    </div>
+  </div>
+</div>
