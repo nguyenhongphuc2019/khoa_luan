@@ -6,4 +6,13 @@ module ApplicationHelper
   def load_main_category
     Category.main
   end
+
+  def load_icon document_type
+    "file-" << document_type << "-o"
+  end
+
+  def load_language id
+    return "Tiếng việt" if id=1
+    "English"    
+  end
 end
