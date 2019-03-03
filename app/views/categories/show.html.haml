@@ -1,0 +1,8 @@
+.col-md-12
+  .panel.panel-headline
+    .panel-heading
+      %h3.panel-title.text-left
+        Tài liệu #{@category.name}
+    .panel-body
+      .row
+        = render partial: 'document', collection: @documents, as: :document

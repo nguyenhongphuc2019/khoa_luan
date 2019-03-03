@@ -7,6 +7,6 @@ class DocumentsController < ApplicationController
   private
 
   def load_category
-    @document = Document.find_by id: params[:id]
+    @document = Document.includes(:keywords).find_by id: params[:id]
   end
 end

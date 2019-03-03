@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_27_163841) do
+ActiveRecord::Schema.define(version: 2019_03_03_104127) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 2019_02_27_163841) do
     t.integer "language"
     t.string "type_doc"
     t.index ["category_id"], name: "index_documents_on_category_id"
+  end
+
+  create_table "keywords", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.integer "keywordable_id"
+    t.string "keywordable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "documents", "categories"
