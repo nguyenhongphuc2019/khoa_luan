@@ -1,11 +1,12 @@
 <div class="col-md-4">
   <div class="thumbnail">
-    <%= image_tag document.image.thumb.url, class: "image-responsive height-150 " %>
+    <%= image_tag document.image.thumb.url, class: "img-responsive height-150" %>
     <div class="profile-detail padding-bottom-0">
       <div class="profile-info margin-20">
         <h4 class="heading"><%= fa_icon "file-text-o", text: "Thông tin cơ bản" %></h4>
         <ul class="list-unstyled list-justify">
-          <li class="text-muted">Tên tài liệu: <span><%= link_to document.name, document_path(document.id) %>
+          <li class="text-muted">Tên tài liệu: <span>
+            <%= link_to document.name.truncate(20), document_path(document.id), data:{ toggle: "tootip"}, title: document.name %>
             <%= link_to '<i class="fa fa-download" aria-hidden="true" data-toggle="tooltip" title="tải xuống ngay"></i>'.html_safe,
               asset_path(document.source_file), download: document.source_file %></span>
           </li>
