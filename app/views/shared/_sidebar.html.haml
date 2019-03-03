@@ -1,0 +1,7 @@
+/ LEFT SIDEBAR
+#sidebar-nav.sidebar
+  .sidebar-scroll
+    %nav
+      %ul.nav
+        = render partial: 'shared/main_category', collection: load_main_category, as: :category
+/ END LEFT SIDEBAR
