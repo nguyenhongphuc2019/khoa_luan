@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :load_category, only: %i(show)
   
   def show
-    @documents = @category.documents
+    @documents = @category.documents.page(params[:page]).per(6)
   end
 
   private

@@ -1,0 +1,28 @@
+.col-md-12.item
+  .thumbnail
+    = image_tag document.image.thumb.url, class: "img-responsive height-150"
+    .profile-detail.padding-bottom-0
+      .profile-info.margin-20
+        %h4.heading= fa_icon "file-text-o", text: "Thông tin cơ bản"
+        %ul.list-unstyled.list-justify
+          %li.text-muted
+            Tên tài liệu:
+            %span
+              = link_to document.name.truncate(20), document_path(document.id), data:{ toggle: "tootip"}, title: document.name
+              = link_to '<i class="fa fa-download" aria-hidden="true" data-toggle="tooltip" title="tải xuống ngay"></i>'.html_safe,
+                asset_path(document.source_file), download: document.source_file                                                    
+          %li.text-muted
+            Tác giả:
+            %span= document.author_name
+          %li.text-muted
+            Ngôn ngữ:
+            %span= load_language document.language
+          %li.text-muted
+            Loại tài liệu:
+            %span= fa_icon load_icon(document.type_doc), text: document.type_doc
+          %li.text-muted
+            Tổng số dowload:
+            %span= document.total_dowload
+          %li.text-muted
+            Tổng số view:
+            %span= document.total_view

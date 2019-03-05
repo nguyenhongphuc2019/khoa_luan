@@ -1,53 +1,12 @@
 .col-md-12
   .panel.panel-headline
     .clearfix
-      .profile-left
-        .profile-detail.padding-bottom-0
-          .profile-info.margin-20.padding-10{"data-spy" => "affix"}
-            %h4.heading.text-danger= @document.name.truncate(20)
-            %ul.list-unstyled.list-justify
-              %li.text-info
-                Tác giả:
-                %span= @document.author_name
-              %li.text-info
-                Ngôn ngữ:
-                %span= load_language @document.language
-              %li.text-info
-                Loại tài liệu:
-                %span= fa_icon load_icon(@document.type_doc), text: @document.type_doc
-              %li.text-info
-                Tổng số dowload:
-                %span= @document.total_dowload
-              %li.text-info
-                Tổng số view:
-                %span= @document.total_view
-            .text-center
-              = link_to '<i class="fa fa-download" aria-hidden="true" data-toggle="tooltip" title="xem chi tiết"></i> Xem chi tiết'.html_safe, |
-              asset_path(@document.source_file), class:"btn btn-info btn-block", target: "blank"                           
-            %br/
-            .text-center
-              = link_to '<i class="fa fa-download" aria-hidden="true" data-toggle="tooltip" title="tải xuống ngay"></i> Tải xuống'.html_safe, |
-                asset_path(@document.source_file), download: @document.source_file, class:"btn btn-success btn-block"                         
-            %br/
-            %ul.list-inline.social-icons
-              %li
-                %a.facebook-bg{:href => "#"}
-                  %i.fa.fa-facebook
-              %li
-                %a.twitter-bg{:href => "#"}
-                  %i.fa.fa-twitter
-              %li
-                %a.google-plus-bg{:href => "#"}
-                  %i.fa.fa-google-plus
-              %li
-                %a.github-bg{:href => "#"}
-                  %i.fa.fa-github
-            %br/
-            %ul.list-unstyled
-              = render partial: 'keyword', collection: @document.keywords, as: :keyword
-      .profile-right
-        %h4.heading.text-danger.text-center= fa_icon "dashcube", text: @document.name
-        .awards
-          .row
-            .col-md-12.col-sm-12
-              = raw(@document.description)
+      = render partial: 'profile_left', locals: { document: @document }
+      = render partial: 'profile_right', locals: { document: @document }
+.col-md-12
+  .panel.panel-headline
+    .panel-heading
+      %h3= "Tài liệu liên quan"
+    .panel-body
+      .owl-carousel.owl-theme
+        = render partial: 'document', collection: @relation_documents, as: :document
