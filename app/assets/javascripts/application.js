@@ -14,6 +14,8 @@
 //= require bootstrap-sprockets
 //= require klorofil
 //= require jquery.slimscroll.min
+//= require owl.carousel.min
 //= require rails-ujs
 //= require activestorage
+//= require main
 //= require_tree .

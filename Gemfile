@@ -19,6 +19,7 @@ gem "font-awesome-rails"
 gem 'mini_magick'
 gem 'ckeditor'
 gem "haml-rails"
+gem 'kaminari'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 

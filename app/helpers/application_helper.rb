@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
   def load_language id
-    return "Tiếng việt" if id=1
+    return "Tiếng việt" if id==1
     "English"    
   end
 end
