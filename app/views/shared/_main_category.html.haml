@@ -1,9 +1,9 @@
 %li
-  %a.collapsed{"data-toggle" => "collapse", :href => "#subPages-#{category.id}"}
-    %i{:class => "lnr #{category.category_icon}"}
+  %a.collapsed{"data-toggle" => "collapse", :href => "#subCategory-#{category.id}"}
+    %i{class: "lnr #{category.category_icon}"}
     %span
       = category.name
-    %i.icon-submenu.lnr.lnr-chevron-left
-  .collapse{:id => "subPages-#{category.id}"}
+    %i.icon-submenu.lnr.lnr-chevron-right
+  .collapse{id: "subCategory-#{category.id}"}
     %ul.nav
       = render partial: 'shared/sub_category', collection: load_sub_category(category.id), as: :sub_category
