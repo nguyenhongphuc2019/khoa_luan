@@ -166,15 +166,15 @@ html.fullscreen-bg #wrapper {
   padding: 0;
   margin: 0;
   border: none;
-  background-color: #fff; }
+  background-color: #fff;}
   .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
     background-color: #fafafa; }
   .navbar-default .navbar-toggle, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
     background-color: #f8f8f8; }
   .navbar-default .brand {
     float: left;
-    padding: 30px 60px;
-    background-color: #fff; }
+    padding: 35px 60px;
+    background-color: #fafafa;}
   @media screen and (max-width: 1024px) {
     .navbar-default .brand {
       padding-left: 30px;
@@ -204,7 +204,7 @@ html.fullscreen-bg #wrapper {
   float: right; }
 
 .navbar-form {
-  padding: 15px;
+  padding: 20px;
   border: 0; }
   .navbar-form input[type="text"] {
     min-width: 200px; }

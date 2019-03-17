@@ -15,4 +15,8 @@ module ApplicationHelper
     return "Tiếng việt" if id==1
     "English"    
   end
+
+  def load_keyword category_id
+    Verb.where group: category_id
+  end
 end

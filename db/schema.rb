@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_03_104127) do
+ActiveRecord::Schema.define(version: 2019_03_11_151606) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -39,12 +39,21 @@ ActiveRecord::Schema.define(version: 2019_03_03_104127) do
   end
 
   create_table "keywords", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
     t.integer "keywordable_id"
     t.string "keywordable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "verb_id"
+    t.index ["verb_id"], name: "index_keywords_on_verb_id"
+  end
+
+  create_table "verbs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "group"
   end
 
   add_foreign_key "documents", "categories"
+  add_foreign_key "keywords", "verbs"
 end

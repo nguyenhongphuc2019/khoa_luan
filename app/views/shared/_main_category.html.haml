@@ -1,5 +1,5 @@
 %li
-  %a.collapsed{"data-toggle" => "collapse", :href => "#subCategory-#{category.id}"}
+  %a.collapsed{"data-toggle": "collapse", href: "#subCategory-#{category.id}", "data-category": category.id }
     %i{class: "lnr #{category.category_icon}"}
     %span
       = category.name

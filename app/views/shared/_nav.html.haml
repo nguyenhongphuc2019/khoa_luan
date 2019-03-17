@@ -4,17 +4,17 @@
     %a{:href => "/"}
       = image_tag 'logo', class: "img-responsive logo"
   .container-fluid
-    %form.navbar-form.navbar-left
+    %form.navbar-form.navbar-left.padding-left-140
       .input-group
         %input.form-control.width-400{:placeholder => "Search dashboard...", :type => "text", :value => ""}/
         %span.input-group-btn
           %button.btn.btn-primary{:type => "button"} Go
     .navbar-btn.navbar-btn-right.padding-20
       %a.btn.btn-success{:href => "#", :title => "Sign up"}
-        = fa_icon "rocket"
+        = fa_icon "pencil"
         %span Đăng kí
       %a.btn.btn-success{:href => "#", :title => "Sign in"}
-        = fa_icon "rocket"
+        = fa_icon "sign-in"
         %span Đăng nhập
     .navbar-btn.navbar-right.padding-20
       %button.btn-toggle-fullwidth{:type => "button"}
