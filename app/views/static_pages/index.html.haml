@@ -1,1 +1,4 @@
 = render partial: 'main_category', collection: load_main_category, as: :category
+.clearfix
+.owl-carousel.owl-theme{id: "owl-2"}
+  = render partial: 'keyword_category', collection: @keywords_category, as: :keyword

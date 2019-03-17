@@ -156,7 +156,42 @@ ul{
   border-radius: 5%;
 }
 
-.active {
+// .active {
+//   color: #fff;
+//   background-color: #97a3a8;
+// }
+
+.badge-default {
+  background-color: #2bbbad!important;
+  color: #fff!important;
+  font-weight: 200 !important;
+}
+
+.label-primary {
+  background-color: #4285f4!important;
   color: #fff;
-  background-color: #245c77;
+}
+
+.hoverable {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: all .55s ease-in-out;
+  -o-transition: all .55s ease-in-out;
+  transition: all .55s ease-in-out;
+}
+
+.hoverable:hover {
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
+  box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
+  -webkit-transition: all .55s ease-in-out;
+  -o-transition: all .55s ease-in-out;
+  transition: all .55s ease-in-out;
+}
+
+.padding-left-140{
+  padding-left: 140px;
+}
+
+.badge-default:hover {
+  background-color: #ff3547!important;
 }

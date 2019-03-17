@@ -8,5 +8,5 @@
     .panel-heading
       %h3= "Tài liệu liên quan"
     .panel-body
-      .owl-carousel.owl-theme
+      .owl-carousel.owl-theme{id: "owl-1"}
         = render partial: 'document', collection: @relation_documents, as: :document

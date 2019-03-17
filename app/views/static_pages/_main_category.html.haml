@@ -1,12 +1,15 @@
 .col-md-4.col-sm-6.min-height-500
-  .panel
+  .panel.hoverable
     %div{class: "panel-body no-padding #{category.background}-gradient color-white text-center text-uppercase"}
       .padding-top-15.padding-bottom-15
         %h2.panel-title.fw-bold
           = category.name
     .panel-body
       = render partial: 'sub_category', collection: load_sub_category(category.id), as: :sub_category, cached: true
-      = render partial: 'category_document', collection: load_sub_category(category.id), as: :category, cached: true 
-    .panel-footer  
-      = render partial: 'keyword', collection: category.keywords, as: :keyword, locals: {category: category}
+      = render partial: 'category_document', collection: load_sub_category(category.id), as: :category 
+      %h6.label.label-primary
+        Từ khóa:
+      &nbsp
+      = render partial: 'keyword_document', collection: load_keyword(category.id), as: :keyword
+    
           
