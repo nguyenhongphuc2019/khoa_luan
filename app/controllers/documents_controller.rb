@@ -1,5 +1,10 @@
 class DocumentsController < ApplicationController
-  before_action :load_category, only: %i(show)
+  before_action :load_document, only: %i(show)
+  
+  def index
+    @documents = Verb.find_by(id: params[:verb_id]).documents
+    @keywords_category = Verb.order(id: :asc).limit(10)
+  end
   
   def show
     category_id = @document.category_id
@@ -8,7 +13,7 @@ class DocumentsController < ApplicationController
 
   private
 
-  def load_category
+  def load_document
     @document = Document.find_by id: params[:id]
   end
 end
