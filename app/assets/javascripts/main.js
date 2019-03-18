@@ -16,6 +16,10 @@ $(document).ready(function()  {
   $('a[class="active"').click(function() {
     console.log('hahaha');
   })
+
+  $('#root_path').click(function() {
+    localStorage.removeItem('category_id')
+  })
 })
 
 window.onload = function() {

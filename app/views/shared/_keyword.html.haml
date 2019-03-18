@@ -1,2 +1,2 @@
 .btn.btn-info.margin-5
-  = keyword.name
+  = link_to(keyword.name, verb_documents_path(keyword.id), class: "text-white")
