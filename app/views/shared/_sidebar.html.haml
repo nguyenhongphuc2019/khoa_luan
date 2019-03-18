@@ -1,7 +1,7 @@
-/ LEFT SIDEBAR
 #sidebar-nav.sidebar
-  .sidebar-scroll
+  .sidebar-scroll.full-height
     %nav
       %ul.nav
         = render partial: 'shared/main_category', collection: load_main_category, as: :category
-/ END LEFT SIDEBAR
+    = render partial: 'shared/keyword', collection: load_keywords, as: :keyword
+
