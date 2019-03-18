@@ -7,6 +7,14 @@ ul{
   padding: 20px;
 }
 
+.padding-5 {
+  padding: 5px;
+}
+
+.margin-5{
+  margin: 2px;
+}
+
 .margin-top-10{
   margin-top: 10px;
 }
@@ -194,4 +202,8 @@ ul{
 
 .badge-default:hover {
   background-color: #ff3547!important;
+}
+
+.full-height {
+  height: 100% !important;
 }

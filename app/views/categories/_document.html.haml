@@ -16,8 +16,8 @@
           %li.text-muted
             Loại tài liệu:
             %span
-              = fa_icon load_icon(document.type_doc), text: document.type_doc
               = load_language document.language  
+              = fa_icon load_icon(document.type_doc), text: document.type_doc
               = link_to '<i class="fa fa-download" aria-hidden="true" data-toggle="tooltip" title="tải xuống ngay"></i>'.html_safe,
               asset_path(document.source_file), download: document.source_file
           %li.text-muted

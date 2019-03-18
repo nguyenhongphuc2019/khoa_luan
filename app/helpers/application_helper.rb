@@ -19,4 +19,8 @@ module ApplicationHelper
   def load_keyword category_id
     Verb.where group: category_id
   end
+
+  def load_keywords
+    Verb.take(10)
+  end
 end
