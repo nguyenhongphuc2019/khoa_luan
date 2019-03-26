@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_11_151606) do
+ActiveRecord::Schema.define(version: 2019_03_26_171630) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -38,6 +38,33 @@ ActiveRecord::Schema.define(version: 2019_03_11_151606) do
     t.index ["category_id"], name: "index_documents_on_category_id"
   end
 
+  create_table "feature_documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "document_id"
+    t.bigint "feature_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "point"
+    t.index ["document_id"], name: "index_feature_documents_on_document_id"
+    t.index ["feature_id"], name: "index_feature_documents_on_feature_id"
+  end
+
+  create_table "feature_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "feature_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "point"
+    t.index ["feature_id"], name: "index_feature_users_on_feature_id"
+    t.index ["user_id"], name: "index_feature_users_on_user_id"
+  end
+
+  create_table "features", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "keywords", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "keywordable_id"
     t.string "keywordable_type"
@@ -47,6 +74,20 @@ ActiveRecord::Schema.define(version: 2019_03_11_151606) do
     t.index ["verb_id"], name: "index_keywords_on_verb_id"
   end
 
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "avatar"
+    t.string "name"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
   create_table "verbs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -54,6 +95,24 @@ ActiveRecord::Schema.define(version: 2019_03_11_151606) do
     t.integer "group"
   end
 
+  create_table "votes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "votable_type"
+    t.integer "votable_id"
+    t.string "voter_type"
+    t.integer "voter_id"
+    t.boolean "vote_flag"
+    t.string "vote_scope"
+    t.integer "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
+  end
+
   add_foreign_key "documents", "categories"
+  add_foreign_key "feature_documents", "documents"
+  add_foreign_key "feature_documents", "features"
+  add_foreign_key "feature_users", "features"
+  add_foreign_key "feature_users", "users"
   add_foreign_key "keywords", "verbs"
 end
