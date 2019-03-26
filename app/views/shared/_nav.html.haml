@@ -4,19 +4,36 @@
     %a#root_path{href: "/"}
       = image_tag 'logo', class: "img-responsive logo"
   .container-fluid
-    %form.navbar-form.navbar-left.padding-left-140
+    %form.navbar-form.navbar-left
       .input-group
         %input.form-control.width-400{:placeholder => "Search dashboard...", :type => "text", :value => ""}/
         %span.input-group-btn
           %button.btn.btn-primary{:type => "button"} Go
     .navbar-btn.navbar-btn-right.padding-20
-      %a.btn.btn-info{:href => "#", :title => "Sign up"}
-        = fa_icon "pencil"
-        %span Đăng kí
-      %a.btn.btn-info{:href => "#", :title => "Sign in"}
-        = fa_icon "sign-in"
-        %span Đăng nhập
+      - unless current_user
+        = link_to('<i class="fa fa-pencil" aria-hidden="true"></i> Đăng kí'.html_safe, new_user_registration_path,
+            class: "btn btn-info")    
+        = link_to('<i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập'.html_safe, new_user_session_path, 
+            class: "btn btn-info")
+    - if current_user   
+      #nav-menu
+        %ul.nav.navbar-nav.navbar-right
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#"}
+              = image_tag current_user.avatar.url, class: 'img-circle width-height-30' if current_user.avatar.present?
+              %span 
+                = current_user.name if current_user.name.present?
+              %i.icon-submenu.lnr.lnr-chevron-down
+            %ul.dropdown-menu
+              %li
+                %a{:href => "#", data: {toggle: "modal", target: "#myModal"}}
+                  %i.lnr.lnr-user
+                  %span Thông tin của tôi
+              %li
+                = link_to('<i class="lnr lnr-exit" aria-hidden="true"></i> Đăng xuất'.html_safe, 
+                    destroy_user_session_path, method: :delete, data: {confirm: "Bạn thật sự muốn thoát"})          
     .navbar-btn.navbar-right.padding-20
       %button.btn-toggle-fullwidth{:type => "button"}
         %i.lnr.lnr-arrow-right-circle
+= render partial: 'shared/modal_user'          
 / END NAVBAR

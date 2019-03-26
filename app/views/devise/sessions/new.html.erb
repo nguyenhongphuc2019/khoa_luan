@@ -1,0 +1,43 @@
+<div class="vertical-align-wrap">
+  <div class="vertical-align-middle">
+    <div class="auth-box ">
+      <div class="left">
+        <div class="content">
+          <div class="header">
+            <p class="lead">Đăng nhập tài khoản của bạn</p>
+          </div>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="form-group">
+              <%= f.label :email, class: "control-label sr-only" %>
+              <%= f.email_field :email, class: "form-control", id:"signin-email", autofocus: true, autocomplete: "email",  placeholder: "Email" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :password, class: "control-label sr-only" %>
+              <%= f.password_field :password, class: "form-control", id: "signin-password", autocomplete: "current-password", placeholder: "Password" %>
+            </div>
+            <div class="form-group clearfix">
+              <% if devise_mapping.rememberable? %>
+                <label class="fancy-checkbox element-left">
+                  <%= f.check_box :remember_me %>
+                  <span>Remember me</span>
+                </label>
+              <% end %>
+            </div>
+            <%= f.submit "Đăng nhập", class: "btn btn-danger btn-block" %>
+          <% end %>
+          <br>
+          <p>-- Or --</p>
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+      <div class="right">
+        <div class="overlay"></div>
+        <div class="content text">
+          <h1 class="heading">"Make awesome thingsthat matter."</h1>
+          <p>Create a world where everyone has the freedom to make awesome things that matter</p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
