@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root "static_pages#index"
   resources :categories, only: %i(show)
   resources :documents, only: %i(show index) do
-    resources :votes, only: [:create, :destroy]
+    resources :votes, only: %i(:create, :destroy)
   end
   resources :verbs, only: %i(index) do
     resources :documents, only: %i(index)
