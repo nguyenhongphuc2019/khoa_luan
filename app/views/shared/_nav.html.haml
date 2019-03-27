@@ -30,8 +30,10 @@
                   %i.lnr.lnr-user
                   %span Thông tin của tôi
               %li
+                = link_to('name', edit_user_registration_path)      
+              %li
                 = link_to('<i class="lnr lnr-exit" aria-hidden="true"></i> Đăng xuất'.html_safe, 
-                    destroy_user_session_path, method: :delete, data: {confirm: "Bạn thật sự muốn thoát"})          
+                    destroy_user_session_path, method: :delete, data: {confirm: "Bạn thật sự muốn thoát"})                  
     .navbar-btn.navbar-right.padding-20
       %button.btn-toggle-fullwidth{:type => "button"}
         %i.lnr.lnr-arrow-right-circle

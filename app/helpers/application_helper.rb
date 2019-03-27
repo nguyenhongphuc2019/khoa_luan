@@ -23,4 +23,12 @@ module ApplicationHelper
   def load_keywords
     Verb.take(10)
   end
+
+  def load_status_user
+    ["Học sinh", "Sinh viên", "Đi làm", "Kinh nghiệm dưới 1 năm", "Kinh nghiệm trên 5 năm"]
+  end
+
+  def load_major
+    Category.all.pluck(:id, :name).to_h
+  end
 end
