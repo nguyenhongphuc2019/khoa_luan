@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_27_182436) do
+ActiveRecord::Schema.define(version: 2019_04_08_223825) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 2019_03_27_182436) do
     t.datetime "updated_at", null: false
     t.string "category_icon"
     t.string "background"
+  end
+
+  create_table "document_trackings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "document_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_document_trackings_on_document_id"
+    t.index ["user_id"], name: "index_document_trackings_on_user_id"
   end
 
   create_table "documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -92,7 +101,7 @@ ActiveRecord::Schema.define(version: 2019_03_27_182436) do
     t.string "name"
     t.string "gender"
     t.integer "birth_day"
-    t.string "status"
+    t.string "state"
     t.string "main_major"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -119,6 +128,8 @@ ActiveRecord::Schema.define(version: 2019_03_27_182436) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
+  add_foreign_key "document_trackings", "documents"
+  add_foreign_key "document_trackings", "users"
   add_foreign_key "documents", "categories"
   add_foreign_key "feature_documents", "documents"
   add_foreign_key "feature_documents", "features"

@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :verbs, only: %i(index) do
     resources :documents, only: %i(index)
   end
+  resources :document_trackings, only: %i(create)
 end

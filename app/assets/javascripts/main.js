@@ -13,12 +13,21 @@ $(document).ready(function()  {
     localStorage.setItem('category_id', category_id);
   })
 
-  $('a[class="active"').click(function() {
-    console.log('hahaha');
-  })
-
   $('#root_path').click(function() {
     localStorage.removeItem('category_id')
+  })
+
+  $(".document").click(function() {
+    var document_id = $(this).data("document-id")
+    var user_id = $(this).data("user-id")
+    var data = {document_id: document_id, user_id: user_id}
+    var url = "http://localhost:3000/document_trackings"
+    $.ajax({
+      url: url,
+      type: 'POST',
+      dataType: 'jsonp',
+      data: data
+    })
   })
 })
 
@@ -31,3 +40,4 @@ var display_category = (category_id) => {
   $('a[data-category="' + category_id + '"]').addClass('active');
   $('#subCategory-'.concat(category_id)).addClass('in');
 }
+
