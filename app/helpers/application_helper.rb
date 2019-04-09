@@ -24,7 +24,7 @@ module ApplicationHelper
     Verb.take(10)
   end
 
-  def load_status_user
+  def load_state_user
     ["Học sinh", "Sinh viên", "Đi làm", "Kinh nghiệm dưới 1 năm", "Kinh nghiệm trên 5 năm"]
   end
 

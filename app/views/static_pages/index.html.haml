@@ -1,4 +1,11 @@
 = render partial: 'main_category', collection: load_main_category, as: :category
 .clearfix
+%h3.text-primary Từ khóa gợi ý
 .owl-carousel.owl-theme{id: "owl-2"}
   = render partial: 'shared/keyword_category', collection: @keywords_category, as: :keyword
+.clearfix
+%h3.text-info Tài liệu gợi ý
+= render partial: 'categories/document', collection: @document_recomend, as: :document
+.clearfix
+%h3.text-info Tài liệu bạn đã xem
+= render partial: 'document_tracking', collection: @doc_trackings, as: :document
