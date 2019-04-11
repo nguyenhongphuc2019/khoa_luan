@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_11_165306) do
+ActiveRecord::Schema.define(version: 2019_04_11_172719) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -45,6 +45,17 @@ ActiveRecord::Schema.define(version: 2019_04_11_165306) do
     t.integer "language"
     t.string "type_doc"
     t.index ["category_id"], name: "index_documents_on_category_id"
+  end
+
+  create_table "feature_attributes_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "gender"
+    t.integer "birth_day"
+    t.string "state"
+    t.string "main_major"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_feature_attributes_users_on_user_id"
   end
 
   create_table "feature_categories_documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -163,6 +174,7 @@ ActiveRecord::Schema.define(version: 2019_04_11_165306) do
   add_foreign_key "document_trackings", "documents"
   add_foreign_key "document_trackings", "users"
   add_foreign_key "documents", "categories"
+  add_foreign_key "feature_attributes_users", "users"
   add_foreign_key "feature_categories_documents", "documents"
   add_foreign_key "feature_category_documents", "categories"
   add_foreign_key "feature_category_documents", "documents"

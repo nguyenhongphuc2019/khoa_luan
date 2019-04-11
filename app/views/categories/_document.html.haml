@@ -8,7 +8,10 @@
           %li.text-muted
             Tên tài liệu:
             %span
-              = link_to document.name.truncate(20), document_path(document.id), data:{ toggle: "tootip", user_id: current_user.id, document_id: document.id}, title: document.name, class: "document"                                                    
+              - if user_signed_in?
+                = link_to document.name.truncate(20), document_path(document.id), data:{ toggle: "tootip", user_id: current_user.id, document_id: document.id}, title: document.name, class: "document" 
+              - else
+                = link_to document.name.truncate(20), document_path(document.id)                                                  
           %li.text-muted
             Tác giả:
             %span

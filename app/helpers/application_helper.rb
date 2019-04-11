@@ -25,7 +25,7 @@ module ApplicationHelper
   end
 
   def load_state_user
-    ["Học sinh", "Sinh viên", "Đi làm", "Kinh nghiệm dưới 1 năm", "Kinh nghiệm trên 5 năm"]
+    ["Student", "Intern", "Junior", "Senior", "Profesional", "Expert"]
   end
 
   def load_major

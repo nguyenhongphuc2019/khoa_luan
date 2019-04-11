@@ -5,9 +5,10 @@
   = render partial: 'shared/keyword_category', collection: @keywords_category, as: :keyword
 .clearfix
 %h3.text-info Tài liệu gợi ý
-= render partial: 'categories/document', collection: @document_recomend, as: :document
-.clearfix
-%h3.text-info Tài liệu bạn đã xem
-.owl-carousel.owl-theme{id: "owl-3"}
-  = render partial: 'document_tracking', collection: @doc_trackings, as: :document
+= render partial: 'categories/document', collection: @documents_recomend, as: :document
+- if user_signed_in? 
+  .clearfix
+  %h3.text-info Tài liệu bạn đã xem
+  .owl-carousel.owl-theme{id: "owl-3"}
+    = render partial: 'document_tracking', collection: @doc_trackings, as: :document
 

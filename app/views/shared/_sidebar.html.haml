@@ -3,5 +3,5 @@
     %nav
       %ul.nav
         = render partial: 'shared/main_category', collection: load_main_category, as: :category
-    = render partial: 'shared/keyword', collection: load_keywords, as: :keyword
+    = render partial: 'shared/keyword', collection: @documents_recomend, as: :keyword
 
