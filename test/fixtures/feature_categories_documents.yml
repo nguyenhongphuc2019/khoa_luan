@@ -2,8 +2,8 @@
 
 one:
   document: one
-  feature: one
+  main_major: MyString
 
 two:
   document: two
-  feature: two
+  main_major: MyString

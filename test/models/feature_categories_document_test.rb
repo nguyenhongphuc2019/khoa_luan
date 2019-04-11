@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FeatureDocumentTest < ActiveSupport::TestCase
+class FeatureCategoriesDocumentTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

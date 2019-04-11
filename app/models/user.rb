@@ -20,19 +20,19 @@ class User < ApplicationRecord
   def create_feature
     user = User.current
     if user.gender.present?
-      feature_gender = Feature.create(name: "gender-#{user.id}", value: user.gender)
+      feature_gender = Feature.create(name: "gender-#{user.name}", value: user.gender)
       FeatureUser.create(user_id: user.id, feature_id: feature_gender.id)
     end
     if user.birth_day.present?
-      feature_birth_day = Feature.create(name: "birth_day-#{user.id}", value: user.birth_day)
+      feature_birth_day = Feature.create(name: "birth-year-#{user.name}", value: user.birth_day)
       FeatureUser.create(user_id: user.id, feature_id: feature_birth_day.id)
     end
     if user.state.present?
-      feature_status = Feature.create(name: "state-#{user.id}", value: user.state) 
+      feature_status = Feature.create(name: "state-#{user.name}", value: user.state) 
       FeatureUser.create(user_id: user.id, feature_id: feature_status.id)
     end
     if user.main_major.present?
-      feature_main_major = Feature.create(name: "main_major-#{user.id}", value: user.main_major)
+      feature_main_major = Feature.create(name: "main-major-#{user.name}", value: user.main_major)
       FeatureUser.create(user_id: user.id, feature_id: feature_main_major.id)
     end
   end

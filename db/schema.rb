@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_08_223825) do
+ActiveRecord::Schema.define(version: 2019_04_11_165306) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -47,14 +47,46 @@ ActiveRecord::Schema.define(version: 2019_04_08_223825) do
     t.index ["category_id"], name: "index_documents_on_category_id"
   end
 
+  create_table "feature_categories_documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "document_id"
+    t.string "main_major"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_feature_categories_documents_on_document_id"
+  end
+
+  create_table "feature_category_documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "document_id"
+    t.string "main_major"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_feature_category_documents_on_category_id"
+    t.index ["document_id"], name: "index_feature_category_documents_on_document_id"
+  end
+
   create_table "feature_documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "document_id"
     t.bigint "feature_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "point"
+    t.string "gender"
+    t.string "status"
+    t.string "generation"
     t.index ["document_id"], name: "index_feature_documents_on_document_id"
     t.index ["feature_id"], name: "index_feature_documents_on_feature_id"
+  end
+
+  create_table "feature_user_documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "document_id"
+    t.string "gender"
+    t.string "generation"
+    t.string "status"
+    t.integer "point"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_feature_user_documents_on_document_id"
   end
 
   create_table "feature_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -131,8 +163,12 @@ ActiveRecord::Schema.define(version: 2019_04_08_223825) do
   add_foreign_key "document_trackings", "documents"
   add_foreign_key "document_trackings", "users"
   add_foreign_key "documents", "categories"
+  add_foreign_key "feature_categories_documents", "documents"
+  add_foreign_key "feature_category_documents", "categories"
+  add_foreign_key "feature_category_documents", "documents"
   add_foreign_key "feature_documents", "documents"
   add_foreign_key "feature_documents", "features"
+  add_foreign_key "feature_user_documents", "documents"
   add_foreign_key "feature_users", "features"
   add_foreign_key "feature_users", "users"
   add_foreign_key "keywords", "verbs"
