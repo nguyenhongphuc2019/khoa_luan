@@ -8,6 +8,11 @@ $(document).ready(function()  {
     autoWidth:true,
   });
 
+  $('#owl-3').owlCarousel({
+    nav:false,
+    items: 4
+  });
+
   $('.collapsed').click(function() {
     var category_id = $(this).attr('data-category');
     localStorage.setItem('category_id', category_id);

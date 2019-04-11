@@ -44,4 +44,16 @@ RailsAdmin.config do |config|
       configure :description, :ck_editor
      end
   end
+
+  config.model FeatureCategoriesDocument do
+    field :document
+    field :main_major, :enum do
+      enum do
+        Category.all.pluck :name
+      end
+      multiple do
+        true
+      end
+    end
+  end
 end
