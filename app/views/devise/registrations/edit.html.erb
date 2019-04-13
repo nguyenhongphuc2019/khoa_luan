@@ -82,7 +82,7 @@
               </div>
               <%= f.label :birth_day, class: "control-label col-sm-3" %>
               <div class="col-sm-3">
-                  <%= f.select :birth_day, (1990..2019), { include_blank: true }, class: "form-control" %>
+                  <%= f.select :birth_day, (1900..2019), { include_blank: true }, class: "form-control" %>
                 </div>
               <br>
             </div>
@@ -90,7 +90,7 @@
               <br>
               <%= f.label :state, class: "control-label col-sm-3" %> 
               <div class="col-md-9 col-sm-3">
-                <%= f.select :state, options_for_select(load_state_user), {include_blank: true}, class: "form-control" %>
+                <%= f.select :state, User.states, {include_blank: true}, class: "form-control" %>
               </div>  
               <br>
             </div>

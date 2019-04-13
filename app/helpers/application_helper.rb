@@ -24,9 +24,9 @@ module ApplicationHelper
     Verb.take(10)
   end
 
-  def load_state_user
-    ["Student", "Intern", "Junior", "Senior", "Profesional", "Expert"]
-  end
+  # def load_state_user
+  #   {1: "Student", 2: "Intern", 3: "Junior", 4: "Senior", 5: "Profesional", 6: "Expert"}
+  # end
 
   def load_major
     Category.all.pluck(:id, :name).to_h
