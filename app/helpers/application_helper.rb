@@ -24,9 +24,9 @@ module ApplicationHelper
     Verb.take(10)
   end
 
-  def load_state_user
-    ["Học sinh", "Sinh viên", "Đi làm", "Kinh nghiệm dưới 1 năm", "Kinh nghiệm trên 5 năm"]
-  end
+  # def load_state_user
+  #   {1: "Student", 2: "Intern", 3: "Junior", 4: "Senior", 5: "Profesional", 6: "Expert"}
+  # end
 
   def load_major
     Category.all.pluck(:id, :name).to_h

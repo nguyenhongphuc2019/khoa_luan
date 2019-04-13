@@ -2,10 +2,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   mount_uploader :avatar, ImageUploader, dependent: :destroy
-  has_many :feature_users, dependent: :destroy
-  has_many :features, through: :feature_users, dependent: :destroy
   serialize :main_major, Array
   after_update :create_feature
+
+  enum state: {Student: "Student", Intern: "Intern", Junior: "Junior", Senior: "Senior", 
+  Profesional: "Profesional", Expert: "Expert"}
 
   def self.current
     Thread.current[:user]
@@ -19,21 +20,12 @@ class User < ApplicationRecord
 
   def create_feature
     user = User.current
-    if user.gender.present?
-      feature_gender = Feature.create(name: "gender-#{user.name}", value: user.gender)
-      FeatureUser.create(user_id: user.id, feature_id: feature_gender.id)
-    end
-    if user.birth_day.present?
-      feature_birth_day = Feature.create(name: "birth-year-#{user.name}", value: user.birth_day)
-      FeatureUser.create(user_id: user.id, feature_id: feature_birth_day.id)
-    end
-    if user.state.present?
-      feature_status = Feature.create(name: "state-#{user.name}", value: user.state) 
-      FeatureUser.create(user_id: user.id, feature_id: feature_status.id)
-    end
-    if user.main_major.present?
-      feature_main_major = Feature.create(name: "main-major-#{user.name}", value: user.main_major)
-      FeatureUser.create(user_id: user.id, feature_id: feature_main_major.id)
+    fa_user = FeatureAttributesUser.where(user_id: user.id)
+    if fa_user.exists? 
+      fa_user.update_all(gender: user.gender, birth_day: user.birth_day, state: user.state, main_major: user.main_major)
+    else
+      FeatureAttributesUser.create(user_id: user.id, gender: user.gender, birth_day: user.birth_day, 
+      state: user.state, main_major: user.main_major)
     end
   end
 end
