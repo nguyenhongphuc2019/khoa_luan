@@ -15,7 +15,7 @@
             class: "btn btn-info")    
         = link_to('<i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập'.html_safe, new_user_session_path, 
             class: "btn btn-info")
-    - if current_user   
+    - if current_user
       #nav-menu
         %ul.nav.navbar-nav.navbar-right
           %li.dropdown
@@ -30,12 +30,15 @@
                   %i.lnr.lnr-user
                   %span Thông tin của tôi
               %li
-                = link_to('<i class="fa fa-cog" aria-hidden="true"></i> Cài đặt'.html_safe, edit_user_registration_path)      
+                = link_to('<i class="fa fa-cog" aria-hidden="true"></i> Cài đặt'.html_safe, edit_user_registration_path)
+              %li
+                = link_to('<i class="fa fa-cog" aria-hidden="true"></i> Tài liệu của tôi'.html_safe, user_upload_documents_path)    
               %li
                 = link_to('<i class="lnr lnr-exit" aria-hidden="true"></i> Đăng xuất'.html_safe, 
-                    destroy_user_session_path, method: :delete, data: {confirm: "Bạn thật sự muốn thoát"})                  
+                    destroy_user_session_path, method: :delete, data: {confirm: "Bạn thật sự muốn thoát"})             
     .navbar-btn.navbar-right.padding-20
       %button.btn-toggle-fullwidth{:type => "button"}
         %i.lnr.lnr-arrow-right-circle
+      = link_to('upload document', new_document_path) if user_signed_in?      
 = render partial: 'shared/modal_user'          
 / END NAVBAR

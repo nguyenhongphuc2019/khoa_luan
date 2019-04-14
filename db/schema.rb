@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_11_172719) do
+ActiveRecord::Schema.define(version: 2019_04_14_045026) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -42,9 +42,10 @@ ActiveRecord::Schema.define(version: 2019_04_11_172719) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
-    t.integer "language"
     t.string "type_doc"
+    t.bigint "language_id"
     t.index ["category_id"], name: "index_documents_on_category_id"
+    t.index ["language_id"], name: "index_documents_on_language_id"
   end
 
   create_table "feature_attributes_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -126,10 +127,25 @@ ActiveRecord::Schema.define(version: 2019_04_11_172719) do
     t.index ["verb_id"], name: "index_keywords_on_verb_id"
   end
 
+  create_table "languages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_upload_documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "document_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_user_upload_documents_on_document_id"
+    t.index ["user_id"], name: "index_user_upload_documents_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -174,6 +190,7 @@ ActiveRecord::Schema.define(version: 2019_04_11_172719) do
   add_foreign_key "document_trackings", "documents"
   add_foreign_key "document_trackings", "users"
   add_foreign_key "documents", "categories"
+  add_foreign_key "documents", "languages"
   add_foreign_key "feature_attributes_users", "users"
   add_foreign_key "feature_categories_documents", "documents"
   add_foreign_key "feature_category_documents", "categories"
@@ -184,4 +201,6 @@ ActiveRecord::Schema.define(version: 2019_04_11_172719) do
   add_foreign_key "feature_users", "features"
   add_foreign_key "feature_users", "users"
   add_foreign_key "keywords", "verbs"
+  add_foreign_key "user_upload_documents", "documents"
+  add_foreign_key "user_upload_documents", "users"
 end

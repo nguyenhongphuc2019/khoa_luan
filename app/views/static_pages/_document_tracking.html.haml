@@ -10,7 +10,7 @@
             Thể loại:
             = link_to(document.category.name.truncate(15), category_path(document.category))     
           %li.text-muted
-            = load_language document.language  
+            = document.language.name
             = fa_icon load_icon(document.type_doc), text: document.type_doc
             = link_to '<i class="fa fa-download" aria-hidden="true" data-toggle="tooltip" title="tải xuống ngay"></i>'.html_safe,
             asset_path(document.source_file), download: document.source_file

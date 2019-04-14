@@ -1,5 +1,10 @@
-.col-md-4.document
+.col-md-4
   .thumbnail.hoverable
+    .pull-right
+      = link_to('<i class="fa fa-eye padding-5" aria-hidden="true"></i>'.html_safe, document)
+      = link_to('<i class="fa fa-pencil-square-o padding-5" aria-hidden="true"></i>'.html_safe, edit_document_path(document))
+      = link_to('<i class="fa fa-trash-o padding-5" aria-hidden="true"></i>'.html_safe, document_path(document),
+        method: :delete, data: {confirm: t(".confirm")})
     = image_tag document.image.thumb.url, class: "img-responsive height-150"
     .profile-detail.padding-bottom-0
       .profile-info.margin-20
@@ -9,13 +14,17 @@
             Tên tài liệu:
             %span
               - if user_signed_in?
-                = link_to document.name.truncate(20), document_path(document.id), data:{ toggle: "tootip", user_id: current_user.id, document_id: document.id}, title: document.name, class: "document" 
+                = link_to document.name.truncate(20), document_path(document.id), data:{ toggle: "tootip", user_id: current_user.id, document_id: document.id}, title: document.name, class: "document"
               - else
-                = link_to document.name.truncate(20), document_path(document.id)                                                  
+                = link_to document.name.truncate(20), document_path(document.id)
           %li.text-muted
             Tác giả:
             %span
-              = document.author_name.truncate(20)  
+              = document.author_name.truncate(20)
+          %li.text-muted
+            Thể loại:
+            %span
+              = link_to( document.category.name, category_path(document.category))   
           %li.text-muted
             Loại tài liệu:
             %span

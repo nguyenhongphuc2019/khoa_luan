@@ -36,7 +36,6 @@ class StaticPagesController < ApplicationController
       mapping_category = FeatureCategoriesDocument.where(main_major: current_user.main_major).pluck :document_id
       mapping_user = (mapping_attr_user + mapping_category).uniq
       @documents_recomend = Document.where(id: mapping_user)
-      # byebug
     else
       @documents_recomend = Document.order(created_at: :desc).limit(10)
     end

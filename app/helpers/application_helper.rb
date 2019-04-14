@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def load_icon document_type
-    "file-" << document_type << "-o"
+    "file-" << document_type << "-o" unless document_type.nil?
   end
 
   def load_language id
@@ -20,13 +20,13 @@ module ApplicationHelper
     Verb.where group: category_id
   end
 
+  def main_category_ids
+    [1,2,3,4,5,6]
+  end
+
   def load_keywords
     Verb.take(10)
   end
-
-  # def load_state_user
-  #   {1: "Student", 2: "Intern", 3: "Junior", 4: "Senior", 5: "Profesional", 6: "Expert"}
-  # end
 
   def load_major
     Category.all.pluck(:id, :name).to_h

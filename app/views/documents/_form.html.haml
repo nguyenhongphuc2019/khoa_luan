@@ -1,0 +1,25 @@
+= form_with(model: document) do |f|
+  = f.label :category_id
+  = f.select :category_id, options_from_collection_for_select(Category.where.not(id: main_category_ids), :id, :name), required: true
+  %br/
+  = f.label :name
+  = f.text_field :name, required: true
+  %br/
+  = f.label :author_name
+  = f.text_field :author_name, required: true
+  %br/
+  = f.label :description
+  = f.text_area :description
+  %br/
+  = f.label :language_id
+  = f.select :language_id, options_from_collection_for_select(Language.all, :id, :name)
+  %br/
+  = f.label :source_file
+  = f.file_field :source_file, required: true
+  = content_tag(:iframe, "", src: document.source_file, width: "50%", height: "300", frameborder: "0" ) if document.source_file.present?
+  %br/
+  = f.label :image
+  = f.file_field :image, required: true
+  = image_tag document.image.url if document.image.present?
+  %br/
+  = f.submit "submit" 
