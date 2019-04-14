@@ -34,6 +34,14 @@ $(document).ready(function()  {
       data: data
     })
   })
+
+  $(window).scroll(function() {
+    url = $("a[rel*='next']").attr('href');
+    if (url &&  $(window).scrollTop() > $(document).height() - $(window).height() -50) {
+      $(".pagination").html('<img class="" width="200" height="100" src="/assets/load-more.gif" alt="Fetching more data..." title="Fetching more data......" />');
+      $.getScript(url);
+    }
+});
 })
 
 window.onload = function() {

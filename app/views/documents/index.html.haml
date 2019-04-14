@@ -1,4 +1,6 @@
-= render partial: 'categories/document', collection: @documents, as: :document
+#documents
+  = render partial: 'document_index', collection: @documents, as: :document
 .clearfix
-.owl-carousel.owl-theme{id: "owl-2"}
-  = render partial: 'shared/keyword_category', collection: @keywords_category, as: :keyword
+  .row
+    .col-md-12.text-center
+      = paginate @documents

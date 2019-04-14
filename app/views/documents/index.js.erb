@@ -1,0 +1,7 @@
+$("#documents").append('<%= j render partial: "document_index", collection: @documents, as: :document %>');
+<% if @documents.next_page %>
+  $(".pagination").replaceWith('<%= j paginate @documents %>');
+<% else %>
+  $(".pagination").remove();
+<% end %>
+<% sleep 3 %>

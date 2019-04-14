@@ -25,7 +25,7 @@ class User < ApplicationRecord
       fa_user.update_all(gender: user.gender, birth_day: user.birth_day, state: user.state, main_major: user.main_major)
     else
       FeatureAttributesUser.create(user_id: user.id, gender: user.gender, birth_day: user.birth_day, 
-      state: user.state, main_major: user.main_major)
+        state: user.state, main_major: user.main_major)
     end
   end
 end

@@ -1,0 +1,7 @@
+%h2.text-center.text-info Tài liệu của tôi
+- if @documents.present?
+  = render partial: 'document', collection: @documents
+- else
+  %h6.text-center.text-mute Chưa có tài liệu upload
+  %hr/   
+  

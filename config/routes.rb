@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root "static_pages#index"
   resources :categories, only: %i(show)
-  resources :documents, only: %i(show index) do
+  resources :user_upload_documents, only: :index
+  resources :documents do
     resources :votes, only: %i(:create, :destroy)
   end
   resources :verbs, only: %i(index) do

@@ -8,7 +8,7 @@
           %span= document.author_name
         %li.text-info
           Ngôn ngữ:
-          %span= load_language document.language
+          %span= document.language.name
         %li.text-info
           Loại tài liệu:
           %span= fa_icon load_icon(document.type_doc), text: document.type_doc
