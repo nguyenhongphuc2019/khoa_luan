@@ -1,14 +1,35 @@
 = render partial: 'main_category', collection: load_main_category, as: :category
 .clearfix
-%h3.text-primary Từ khóa gợi ý
-.owl-carousel.owl-theme{id: "owl-2"}
-  = render partial: 'shared/keyword_category', collection: $keywords_category, as: :keyword
+.panel.hoverable
+  .panel-heading
+    %h3.text-primary 
+      %i.fa.fa-window-restore
+        Từ khóa gợi ý
+  .panel-body
+    .owl-carousel.owl-theme{id: "owl-2"}
+      = render partial: 'shared/keyword_category', collection: $keywords_category, as: :keyword
 .clearfix
-%h3.text-info Tài liệu gợi ý
-= render partial: 'categories/document', collection: @documents_recomend, as: :document
+.panel.hoverable
+  .panel-heading  
+    %h3.text-info 
+      %i.fa.fa-heart
+        Tài liệu gợi ý
+  .panel-body
+    = render partial: 'categories/document', collection: @documents_recomend, as: :document
 - if user_signed_in? 
   .clearfix
-  %h3.text-info Tài liệu bạn đã xem
-  .owl-carousel.owl-theme{id: "owl-3"}
-    = render partial: 'document_tracking', collection: @doc_trackings, as: :document
-
+  .panel.hoverable
+    .panel-body
+      %h3.text-info
+        %i.fa.fa-check 
+          Tài liệu bạn đã xem
+      .owl-carousel.owl-theme{id: "owl-3"}
+        = render partial: 'document_tracking', collection: @doc_trackings, as: :document
+  .clearfix
+  .panel.hoverable
+    .panel-body  
+      %h3.text-info
+        %i.fa.fa-wpexplorer  
+          Tài liệu bạn có thể quan tâm
+      .owl-carousel.owl-theme{id: "owl-4"}
+        = render partial: 'document_tracking', collection: @dynamic_suggest_document, as: :document

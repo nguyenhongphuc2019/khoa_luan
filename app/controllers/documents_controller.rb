@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :load_document, only: %i(show update destroy edit)
+  impressionist :actions => [:show]
 
   def new
     @document = Document.new
@@ -12,6 +13,7 @@ class DocumentsController < ApplicationController
   def show
     category_id = @document.category_id
     @relation_documents = Document.where(category_id: category_id).limit(10)
+    impressionist(@document)
   end
 
   def create

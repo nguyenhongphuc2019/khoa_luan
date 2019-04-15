@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   before_action :check_age
   def index
     if feature_attributes_user.present?
-      suggest_document
+      static_suggest_document
       keyword_recommend
     else
       @documents_recomend = Document.order(created_at: :asc).limit(6)
@@ -25,7 +25,7 @@ class StaticPagesController < ApplicationController
     $keywords_category = Verb.where(group: category_ids)
   end
 
-  def suggest_document
+  def static_suggest_document
     if user_signed_in?
       fa_user = FeatureAttributesUser.find_by(user_id: current_user.id)
       mapping_attr_user = FeatureUserDocument.where(gender: check_gender, generation: check_age, status: current_user.state).pluck :document_id
@@ -41,6 +41,7 @@ class StaticPagesController < ApplicationController
     if user_signed_in?
       document_trackings = DocumentTracking.where(user_id: current_user.id).pluck :document_id
       @doc_trackings = Document.where id: document_trackings
+      @dynamic_suggest_document = dynamic_suggest_document.where.not(id: document_trackings) if @doc_trackings.present?
     end
   end
 
@@ -66,5 +67,18 @@ class StaticPagesController < ApplicationController
 
   def current_year
     Date.current.year
+  end
+
+  def category_user_care
+    category_ids = []
+    document_ids = DocumentTracking.where(user_id: current_user.id).pluck(:document_id).uniq
+    Document.where(id: document_ids).each do |document|
+      category_ids << document.category.id
+    end
+    category_ids.uniq
+  end
+
+  def dynamic_suggest_document
+    Document.where(category_id: category_user_care).where("total_view > 10")
   end
 end

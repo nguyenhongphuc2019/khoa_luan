@@ -5,10 +5,16 @@
       .profile-info.margin-20
         %ul.list-unstyled.list-justify
           %li.text-muted
-            = link_to document.name.truncate(20), document_path(document.id), data:{ toggle: "tootip"}, title: document.name                                                       
+            = link_to document.name.truncate(20), document_path(document.id),data:{ toggle: "tootip", document_id: document.id, user_id: current_user.id}, title: document.name, class: "document"                                                     
           %li.text-info
             Thể loại:
-            = link_to(document.category.name.truncate(15), category_path(document.category))     
+            = link_to(document.category.name.truncate(15), category_path(document.category))
+          %li.text-muted
+            Lượt xem: 
+            = document.total_view
+            - if document.total_view > 10
+              %span.label.label-primary 
+                Tài liệu hot
           %li.text-muted
             = document.language.name
             = fa_icon load_icon(document.type_doc), text: document.type_doc
