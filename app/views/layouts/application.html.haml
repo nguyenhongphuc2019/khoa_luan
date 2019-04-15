@@ -15,6 +15,10 @@
         .main-content
           .container-fluid
             .row
+              - flash.each do |f|
+                - type = f[0].to_s.gsub('info', 'success').gsub('warning', 'error')
+                = javascript_tag do
+                  toastr["#{type}"]("#{f[1]}")
               = yield
       .clearfix
       = render 'shared/footer'

@@ -1,4 +1,3 @@
-/ NAVBAR
 %nav.navbar.navbar-default.navbar-fixed-top
   .brand
     %a#root_path{href: "/"}
@@ -37,8 +36,8 @@
                 = link_to('<i class="lnr lnr-exit" aria-hidden="true"></i> Đăng xuất'.html_safe, 
                     destroy_user_session_path, method: :delete, data: {confirm: "Bạn thật sự muốn thoát"})             
     .navbar-btn.navbar-right.padding-20
-      %button.btn-toggle-fullwidth{:type => "button"}
-        %i.lnr.lnr-arrow-right-circle
-      = link_to('upload document', new_document_path) if user_signed_in?      
+      -# %button.btn-toggle-fullwidth{:type => "button"}
+      -#   %i.lnr.lnr-arrow-right-circle
+      = link_to('<i class="fa fa-cloud-upload fa-2x" aria-hidden="true" data-toggle="tooltip" title="Upload Tài liệu"></i>'.html_safe, new_document_path) if user_signed_in?      
 = render partial: 'shared/modal_user'          
-/ END NAVBAR
+

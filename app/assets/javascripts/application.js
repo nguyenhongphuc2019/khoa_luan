@@ -18,5 +18,7 @@
 //= require jquery.slimscroll.min
 //= require owl.carousel.min
 //= require activestorage
+//= require init_ckeditor
+//= require toastr
 //= require main
 //= require_tree .

@@ -24,6 +24,7 @@ gem "devise"
 gem "acts_as_votable"
 gem 'sweetalert2-rails'
 gem 'select2-rails'
+gem 'toastr-rails'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 

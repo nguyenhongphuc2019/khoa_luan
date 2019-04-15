@@ -4,7 +4,7 @@
       %h3.panel-title.text-left
         Tài liệu #{@category.name}
     .panel-body
-      .row
+      .row#documents_category
         = render partial: 'document', collection: @documents, as: :document
       .row
         .col-md-12.text-center

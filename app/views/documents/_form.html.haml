@@ -1,25 +1,66 @@
-= form_with(model: document) do |f|
-  = f.label :category_id
-  = f.select :category_id, options_from_collection_for_select(Category.where.not(id: main_category_ids), :id, :name), required: true
-  %br/
-  = f.label :name
-  = f.text_field :name, required: true
-  %br/
-  = f.label :author_name
-  = f.text_field :author_name, required: true
-  %br/
-  = f.label :description
-  = f.text_area :description
-  %br/
-  = f.label :language_id
-  = f.select :language_id, options_from_collection_for_select(Language.all, :id, :name)
-  %br/
-  = f.label :source_file
-  = f.file_field :source_file, required: true
-  = content_tag(:iframe, "", src: document.source_file, width: "50%", height: "300", frameborder: "0" ) if document.source_file.present?
-  %br/
-  = f.label :image
-  = f.file_field :image, required: true
-  = image_tag document.image.url if document.image.present?
-  %br/
-  = f.submit "submit" 
+.custom-tabs-line.tabs-line-bottom.left-aligned
+  %ul.nav{:role => "tablist"}
+    %li.active
+      %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#tab-bottom-left1", :role => "tab"}
+        Thông tin cơ bản tài liệu
+        %span.badge 7
+    %li
+      %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#tab-bottom-left2", :role => "tab"}
+        Thông tin mở rông tài liệu
+        %span.badge 4
+= form_with(model: document, class: "form-auth-small", local: true) do |f|          
+  .tab-content
+    #tab-bottom-left1.tab-pane.fade.active.in
+      .form-group
+        = f.label :category_id
+        = f.select :category_id, options_from_collection_for_select(Category.where.not(id: main_category_ids), :id, :name, @document.category_id), {required: true, include_blank: true}, class: "form-control"
+      .form-group
+        = f.label :language_id
+        = f.select :language_id, options_from_collection_for_select(Language.all, :id, :name, @document.language_id),{include_blank: true}, class: "form-control"
+      .form-group
+        = f.label :name
+        = f.text_field :name, required: true, class: "form-control"
+      .form-group
+        = f.label :author_name
+        = f.text_field :author_name, required: true, class: "form-control"
+      .form-group
+        = f.label :description
+        = f.text_area :description, class: "form-control", id: "editor"
+      %br/
+      .form-group
+        .upload-btn-wrapper
+          = f.file_field :source_file, required: true
+          %button.btn-upload-file
+            source file
+      = content_tag(:iframe, "", src: document.source_file, width: "100%", height: "300", frameborder: "0" ) if document.source_file.present?
+      %br/
+      .form-group
+        .upload-btn-wrapper
+          = f.file_field :image, required: true
+          %button.btn-upload-file
+            image
+      = image_tag document.image.url, width: "200", height: "100" if document.image.present?
+    #tab-bottom-left2.tab-pane.fade
+      - if @feature_user_document.present?
+        .form-group
+          = f.label :gender
+          = f.select :gender, options_for_select(FeatureUserDocument.genders, @feature_user_document.gender), {required: true}, class: "form-control"
+        .form-group
+          = f.label :generation
+          = f.select :generation, options_for_select(FeatureUserDocument.generations, @feature_user_document.generation), {required: true}, class: "form-control"
+        .form-group
+          = f.label :status
+          = f.select :status, options_for_select(FeatureUserDocument.statuses, @feature_user_document.status), {required: true, include_blank: true}, class: "form-control"
+      - else
+        .form-group
+          = f.label :gender
+          = f.select :gender, options_for_select(FeatureUserDocument.genders), {required: true, include_blank: true}, class: "form-control"
+        .form-group
+          = f.label :generation
+          = f.select :generation, options_for_select(FeatureUserDocument.generations), {required: true, include_blank: true}, class: "form-control"
+        .form-group
+          = f.label :status
+          = f.select :status, options_for_select(FeatureUserDocument.statuses), {required: true, include_blank: true}, class: "form-control"   
+  .form-group
+    .text-center
+      = f.submit "Tải Tài Liệu Lên", class: "btn btn-primary hoverable"    
