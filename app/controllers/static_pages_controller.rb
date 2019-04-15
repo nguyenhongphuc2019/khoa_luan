@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
       keyword_recommend
     else
       @documents_recomend = Document.order(created_at: :asc).limit(6)
-      @keywords_category = Verb.limit 20
+      $keywords_category = Verb.limit 20
     end
     tracking_documents
   end
@@ -18,15 +18,11 @@ class StaticPagesController < ApplicationController
   end
 
   def keyword_recommend
-    if user_signed_in? 
-      category_ids = []
-      @documents_recomend.each do |document|
-        category_ids << document.category.parent_id
-      end
-      @keywords_category = Verb.where(group: category_ids)
-    else
-      @keywords_category = Verb.order(id: :desc)
+    category_ids = []
+    @documents_recomend.each do |document|
+      category_ids << document.category.parent_id
     end
+    $keywords_category = Verb.where(group: category_ids)
   end
 
   def suggest_document

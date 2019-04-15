@@ -2,7 +2,7 @@
 .clearfix
 %h3.text-primary Từ khóa gợi ý
 .owl-carousel.owl-theme{id: "owl-2"}
-  = render partial: 'shared/keyword_category', collection: @keywords_category, as: :keyword
+  = render partial: 'shared/keyword_category', collection: $keywords_category, as: :keyword
 .clearfix
 %h3.text-info Tài liệu gợi ý
 = render partial: 'categories/document', collection: @documents_recomend, as: :document
