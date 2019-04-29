@@ -76,7 +76,11 @@ $(document).ready(function () {
     "hideEasing": "linear",
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
-  } 
+  }
+
+  $('.js-select-main-major').select2({
+    multiple: true
+  });
 })
 
 window.onload = function () {
