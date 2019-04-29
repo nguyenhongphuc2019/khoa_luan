@@ -1,3 +1,23 @@
+.col-md-12
+  .panel.hoverable
+    .panel-heading
+      %h4 Sắp xếp theo:
+      = sort_link(@q, :name) do
+        Tên tài liệu 
+      = sort_link(@q, :author_name) do
+        Tên tác giả
+      = sort_link(@q, :created_at) do
+        Ngày đăng tài liệu
+      = sort_link(@q, :category_id) do
+        Nhóm chủ đề
+      = sort_link(@q, :total_view) do
+        Tổng số lượt xem
+      = sort_link(@q, :total_dowload) do
+        Tổng số lượt tải xuống
+      = sort_link(@q, :language_id) do
+        Ngôn ngữ
+      = sort_link(@q, :type_doc) do
+        Loại tài liệu    
 #documents
   = render partial: 'document_index', collection: @documents, as: :document
 .clearfix
