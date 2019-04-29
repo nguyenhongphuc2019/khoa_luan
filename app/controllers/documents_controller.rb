@@ -7,7 +7,11 @@ class DocumentsController < ApplicationController
   end
   
   def index
-    @documents = @q.result.page(params[:page]).per(10)
+    if params[:verb_id].present?
+      @documents = Verb.find_by(id: params[:verb_id]).documents.page(params[:page]).per(10) 
+    else
+      @documents = @q.result.page(params[:page]).per(10)
+    end
   end
   
   def show

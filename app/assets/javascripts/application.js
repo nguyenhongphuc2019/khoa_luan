@@ -13,6 +13,7 @@
 //= require jquery3
 //= require jquery_ujs
 //= require sweetalert2-rails
+//= require jquery-ui
 //= require bootstrap-sprockets
 //= require klorofil
 //= require jquery.slimscroll.min

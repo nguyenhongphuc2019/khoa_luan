@@ -81,6 +81,18 @@ $(document).ready(function () {
   $('.js-select-main-major').select2({
     multiple: true
   });
+
+  keywords = [];
+  fetch('http://localhost:3000/keywords').then(function(response) {
+    return response.json();
+  }).then(function(data) {
+    data.map(function(keyword) {
+      keywords.push(keyword.name);
+    })
+  });
+  $('#autocomplete').autocomplete({
+    source: keywords
+  });
 })
 
 window.onload = function () {

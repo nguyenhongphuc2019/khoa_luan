@@ -264,4 +264,14 @@ ul{
 .select2-search__field {
   width: 31.75em !important;
 }
- 
+
+.ui-menu {
+  z-index: 9999 !important;
+}
+
+.sort_link {
+  display: inline-block;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
