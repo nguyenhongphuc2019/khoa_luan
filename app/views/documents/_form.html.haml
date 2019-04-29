@@ -28,20 +28,26 @@
         = f.text_area :description, class: "form-control", id: "editor"
       %br/
       .form-group
-        .upload-btn-wrapper
+        %label.btn.btn-primary(for="source_file")
+          Tài liệu đính kèm
+          %hr/
           = f.file_field :source_file, required: true
-          %button.btn-upload-file
-            source file
       = content_tag(:iframe, "", src: document.source_file, width: "100%", height: "300", frameborder: "0" ) if document.source_file.present?
       %br/
       .form-group
-        .upload-btn-wrapper
+        %label.btn.btn-primary(for="image")
+          Hình ảnh
+          %hr/
           = f.file_field :image, required: true
-          %button.btn-upload-file
-            image
       = image_tag document.image.url, width: "200", height: "100" if document.image.present?
     #tab-bottom-left2.tab-pane.fade
       - if @feature_user_document.present?
+        .form-group
+          = f.label :main_major
+          - if @feature_categories_document.present?
+            = f.select(:main_major, options_for_select(Category.all.collect{|c| [c.name]}, @feature_categories_document.main_major), {include_blank: true}, class: "form-control js-select-main-major", multiple: true)
+          - else
+            = f.select(:main_major, options_for_select(Category.all.collect{|c| [c.name]}), {include_blank: true}, class: "form-control js-select-main-major", multiple: true)    
         .form-group
           = f.label :gender
           = f.select :gender, options_for_select(FeatureUserDocument.genders, @feature_user_document.gender), {required: true}, class: "form-control"
@@ -53,14 +59,17 @@
           = f.select :status, options_for_select(FeatureUserDocument.statuses, @feature_user_document.status), {required: true, include_blank: true}, class: "form-control"
       - else
         .form-group
+          = f.label :main_major
+          = f.select(:main_major, options_for_select(Category.all.collect{|c| [c.name]}), {include_blank: true}, class: "form-control js-select-main-major", multiple: true)
+        .form-group
           = f.label :gender
-          = f.select :gender, options_for_select(FeatureUserDocument.genders), {required: true, include_blank: true}, class: "form-control"
+          = f.select :gender, options_for_select(FeatureUserDocument.genders), {include_blank: true}, class: "form-control"
         .form-group
           = f.label :generation
-          = f.select :generation, options_for_select(FeatureUserDocument.generations), {required: true, include_blank: true}, class: "form-control"
+          = f.select :generation, options_for_select(FeatureUserDocument.generations), {include_blank: true}, class: "form-control"
         .form-group
           = f.label :status
-          = f.select :status, options_for_select(FeatureUserDocument.statuses), {required: true, include_blank: true}, class: "form-control"   
+          = f.select :status, options_for_select(FeatureUserDocument.statuses), {include_blank: true}, class: "form-control"   
   .form-group
     .text-center
-      = f.submit "Tải Tài Liệu Lên", class: "btn btn-primary hoverable"    
+      = f.submit "Tải Tài Liệu Lên", class: "btn btn-primary hoverable"

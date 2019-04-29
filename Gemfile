@@ -26,6 +26,8 @@ gem 'sweetalert2-rails'
 gem 'select2-rails'
 gem 'toastr-rails'
 gem 'impressionist'
+gem 'ransack'
+gem 'jquery-ui-rails'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 

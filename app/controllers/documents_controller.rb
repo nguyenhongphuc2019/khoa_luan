@@ -7,7 +7,7 @@ class DocumentsController < ApplicationController
   end
   
   def index
-    @documents = Document.order(created_at: :desc).page(params[:page]).per(10)
+    @documents = @q.result.page(params[:page]).per(10)
   end
   
   def show
@@ -20,12 +20,18 @@ class DocumentsController < ApplicationController
     @document = Document.new document_params
     if @document.save
       redirect_to @document
-      flash[:success] = "Bạn đã upload tài liệu thành công"
+      flash[:success] = "Bạn đã đăng tải tài liệu thành công"
       UserUploadDocument.create(user_id: current_user.id, document_id: Document.last.id)
-      feature_user_document = feature_user_document_params.merge(document_id: @document.id)
-      FeatureUserDocument.create feature_user_document
+      if feature_user_document_params.present?
+        feature_params = feature_user_document_params.merge(document_id: @document.id)
+        FeatureUserDocument.create feature_params
+      end
+      if feature_categories_document_params.present?
+        feature_params = feature_categories_document_params.merge(document_id: @document.id)
+        FeatureCategoriesDocument.create feature_params
+      end
     else
-      flash[:error] = "Upldate tài liệu thất bại"
+      flash[:error] = "Đăng tải tài liệu thất bại"
       render :new
     end
   end
@@ -43,6 +49,7 @@ class DocumentsController < ApplicationController
 
   def edit
     @feature_user_document = FeatureUserDocument.find_by(document_id: @document.id)
+    @feature_categories_document = FeatureCategoriesDocument.find_by(document_id: @document.id)
   end
 
   def destroy
@@ -67,5 +74,9 @@ class DocumentsController < ApplicationController
 
   def feature_user_document_params
     params.require(:document).permit(:gender, :generation, :status)
+  end
+
+  def feature_categories_document_params
+    params.require(:document).permit(main_major: [])
   end
 end

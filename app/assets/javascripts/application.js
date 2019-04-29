@@ -19,6 +19,7 @@
 //= require owl.carousel.min
 //= require activestorage
 //= require init_ckeditor
+//= require select2
 //= require toastr
 //= require main
 //= require_tree .
