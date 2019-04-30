@@ -4,6 +4,22 @@
       = render partial: 'profile_left', locals: { document: @document }
       = render partial: 'profile_right', locals: { document: @document }
 .col-md-12
+  .panel.hoverable
+    .panel-heading
+      %h3.panel-title Bình luận của bạn đọc
+      .right
+        %button.btn-toggle-collapse{:type => "button"}
+          %i.lnr.lnr-chevron-up
+    .panel-body
+      %ul.list-unstyled.activity-list
+        - if @comments.present?
+          = render partial: 'comment', collection: @comments, as: :comment
+          .text-center
+            = paginate @comments
+        - else
+          %h3.text-center.text-info
+            Chưa có bình luận         
+.col-md-12
   .panel.panel-headline
     .panel-heading
       %h3= "Tài liệu liên quan"

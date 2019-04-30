@@ -277,11 +277,15 @@ ul{
 }
 
 ul.activity-list > li {
-  padding: 10px 0px !important;
+  padding: 20px 0px !important;
 }
 
 ul.activity-list > li .timestamp {
   display: inline-block !important;
   font-size: 13px;
   color: #a3a3a3;
+}
+
+.margin-left-55{
+  margin-left: 55px;
 }

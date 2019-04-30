@@ -19,9 +19,15 @@
         %ul.nav.navbar-nav.navbar-right
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#"}
-              = image_tag current_user.avatar.url, class: 'img-circle width-height-30' if current_user.avatar.present?
+              - if current_user.avatar.present?
+                = image_tag current_user.avatar.url, class: 'img-circle width-height-30'
+              - else
+                = image_tag "user-default", class: 'img-circle width-height-30'
               %span 
-                = current_user.name if current_user.name.present?
+                - if current_user.name.present?
+                  = current_user.name
+                - else
+                  Người dùng  
               %i.icon-submenu.lnr.lnr-chevron-down
             %ul.dropdown-menu
               %li

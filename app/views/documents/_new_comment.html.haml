@@ -1,0 +1,9 @@
+.modal.fade{role: "dialog", tabindex: "-1", id: "comment"}
+  .modal-dialog{role: "document"}
+    = form_tag document_comments_path(document) do
+      .modal-content
+        .modal-body
+          = text_area_tag :content, params[:content], id: "editor"
+        .modal-footer
+          = button_tag "Đăng bình luận", class: "btn btn-primary"
+  

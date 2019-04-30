@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_29_132758) do
+ActiveRecord::Schema.define(version: 2019_04_30_032243) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2019_04_29_132758) do
     t.datetime "updated_at", null: false
     t.string "category_icon"
     t.string "background"
+  end
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "document_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_comments_on_document_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "document_trackings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -222,6 +232,8 @@ ActiveRecord::Schema.define(version: 2019_04_29_132758) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
+  add_foreign_key "comments", "documents"
+  add_foreign_key "comments", "users"
   add_foreign_key "document_trackings", "documents"
   add_foreign_key "document_trackings", "users"
   add_foreign_key "documents", "categories"

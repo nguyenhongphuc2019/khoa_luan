@@ -8,6 +8,8 @@ class Document < ApplicationRecord
   is_impressionable counter_cache: :true, column_name: :total_view, unique: :request_hash
   has_many :likes
   has_many :users, through: :likes
+  has_many :comments
+  has_many :users, through: :comments
 
   def is_liked user
     Like.find_by(document_id: id, user_id: user.id)

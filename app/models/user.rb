@@ -6,6 +6,8 @@ class User < ApplicationRecord
   after_update :create_feature
   has_many :likes
   has_many :documents, through: :likes
+  has_many :comments
+  has_many :documents, through: :comments
 
   enum state: {Student: "Student", Intern: "Intern", Junior: "Junior", Senior: "Senior", 
   Profesional: "Profesional", Expert: "Expert"}

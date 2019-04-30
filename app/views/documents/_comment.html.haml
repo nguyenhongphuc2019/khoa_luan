@@ -1,0 +1,17 @@
+%li
+  - if comment.user.avatar.present?
+    = image_tag comment.user.avatar.url, class: 'img-circle pull-left avatar'
+  - else
+    = image_tag 'user-default', class: 'img-circle pull-left avatar'
+  %p
+    = link_to comment.user.name
+    %span.timestamp
+    = time_ago_in_words(comment.created_at) + ' ago'
+  %div.margin-left-55
+    = raw comment.content
+  - if comment.user == current_user
+    .pull-right
+      = link_to "<i class='fa fa-trash-o' aria-hidden='true'></i>".html_safe,
+          document_comment_path(comment.document, comment),
+          data: {confirm: "Bạn có chắc là muốn xóa bình luận này?"},
+          method: :delete
