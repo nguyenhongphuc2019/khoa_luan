@@ -4,6 +4,6 @@
       .modal-content
         .modal-body
           = text_area_tag :content, params[:content], id: "editor"
-        .modal-footer
+        .modal-footer.border-none
           = button_tag "Đăng bình luận", class: "btn btn-primary"
-  
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Đóng
