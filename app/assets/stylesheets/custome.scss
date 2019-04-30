@@ -275,3 +275,13 @@ ul{
   padding-top: 10px;
   padding-bottom: 5px;
 }
+
+ul.activity-list > li {
+  padding: 10px 0px !important;
+}
+
+ul.activity-list > li .timestamp {
+  display: inline-block !important;
+  font-size: 13px;
+  color: #a3a3a3;
+}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_15_063848) do
+ActiveRecord::Schema.define(version: 2019_04_29_132758) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -159,6 +159,15 @@ ActiveRecord::Schema.define(version: 2019_04_15_063848) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "document_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_likes_on_document_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -227,6 +236,8 @@ ActiveRecord::Schema.define(version: 2019_04_15_063848) do
   add_foreign_key "feature_users", "features"
   add_foreign_key "feature_users", "users"
   add_foreign_key "keywords", "verbs"
+  add_foreign_key "likes", "documents"
+  add_foreign_key "likes", "users"
   add_foreign_key "user_upload_documents", "documents"
   add_foreign_key "user_upload_documents", "users"
 end
