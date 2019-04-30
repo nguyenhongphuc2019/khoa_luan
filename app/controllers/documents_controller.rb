@@ -16,8 +16,8 @@ class DocumentsController < ApplicationController
   
   def show
     impressionist(@document)
-    category_id = @document.category_id
-    @relation_documents = Document.where(category_id: category_id).limit(10)
+    @relation_documents = Document.where(category_id: @document.category_id).limit(10)
+    @comments = @document.comments.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def create

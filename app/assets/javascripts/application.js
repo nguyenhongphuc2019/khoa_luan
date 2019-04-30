@@ -14,12 +14,13 @@
 //= require jquery_ujs
 //= require sweetalert2-rails
 //= require jquery-ui
+//= require ck-editor
+//= require init_ckeditor
 //= require bootstrap-sprockets
 //= require klorofil
 //= require jquery.slimscroll.min
 //= require owl.carousel.min
 //= require activestorage
-//= require init_ckeditor
 //= require select2
 //= require toastr
 //= require main
