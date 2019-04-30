@@ -15,9 +15,9 @@ class DocumentsController < ApplicationController
   end
   
   def show
+    impressionist(@document)
     category_id = @document.category_id
     @relation_documents = Document.where(category_id: category_id).limit(10)
-    impressionist(@document)
   end
 
   def create

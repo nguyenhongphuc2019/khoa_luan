@@ -4,6 +4,8 @@ class User < ApplicationRecord
   mount_uploader :avatar, ImageUploader, dependent: :destroy
   serialize :main_major, Array
   after_update :create_feature
+  has_many :likes
+  has_many :documents, through: :likes
 
   enum state: {Student: "Student", Intern: "Intern", Junior: "Junior", Senior: "Senior", 
   Profesional: "Profesional", Expert: "Expert"}

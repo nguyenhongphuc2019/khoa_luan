@@ -6,3 +6,15 @@
         .panel.panel-info
           .panel-heading
             = content_tag(:iframe, "", src: document.source_file, width: "100%", height: "600", frameborder: "0" )
+      - if user_signed_in?  
+        .col-md-1.js-like-document
+          - if document.is_liked(current_user).present?
+            = link_to "<i class='fa fa-heart fa-2x' aria-hidden='true'></i>".html_safe, 
+                document_like_path(document, document.is_liked(current_user)), method: :delete, remote: true
+          - else
+            = link_to "<i class='fa fa-heart-o fa-2x' aria-hidden='true'></i>".html_safe, 
+                document_likes_path(document), method: :post, remote: true        
+        .col-md-1
+          %i.fa.fa-comments-o.fa-2x
+        .col-md-10
+          %i.fa.fa-flag-o.fa-2x

@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :categories, only: %i(show)
   resources :user_upload_documents, only: :index
   resources :documents do
-    resources :votes, only: %i(:create, :destroy)
+    resources :likes, only: %i(create destroy)
+    resources :comments, only: %i(create destroy)
   end
   resources :verbs, only: %i(index) do
     resources :documents, only: %i(index)
