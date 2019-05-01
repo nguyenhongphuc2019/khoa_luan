@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :documents do
     resources :likes, only: %i(create destroy)
     resources :comments, only: %i(create destroy)
+    resources :report_documents, only: %i(create destroy)
   end
   resources :verbs, only: %i(index) do
     resources :documents, only: %i(index)

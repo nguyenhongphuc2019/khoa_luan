@@ -7,13 +7,13 @@
       .input-group
         = f.search_field :name_cont_all, class: "form-control width-400", placeholder: "Bạn đang tìm kiếm gì?", id: "autocomplete"
         %span.input-group-btn
-          = f.submit "Tìm kiếm", class: "btn btn-primary"       
+          = f.button "<i class='fa fa-search' aria-hidden='true'></i>".html_safe, class: "btn btn-primary"       
     .navbar-btn.navbar-btn-right.padding-20
       - unless current_user
-        = link_to('<i class="fa fa-pencil" aria-hidden="true"></i> Đăng kí'.html_safe, new_user_registration_path,
-            class: "btn btn-info")    
-        = link_to('<i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập'.html_safe, new_user_session_path, 
-            class: "btn btn-info")
+        = link_to '<i class="fa fa-pencil" aria-hidden="true"></i> Đăng kí'.html_safe, new_user_registration_path,
+            class: "btn btn-info"    
+        = link_to '<i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập'.html_safe, new_user_session_path, 
+            class: "btn btn-info"
     - if user_signed_in?
       #nav-menu
         %ul.nav.navbar-nav.navbar-right
@@ -30,21 +30,26 @@
                   Người dùng  
               %i.icon-submenu.lnr.lnr-chevron-down
             %ul.dropdown-menu
-              %li
-                %a{:href => "#", data: {toggle: "modal", target: "#myModal"}}
-                  %i.lnr.lnr-user
-                  %span Thông tin của tôi
-              %li
-                = link_to('<i class="fa fa-cog" aria-hidden="true"></i> Cài đặt'.html_safe, edit_user_registration_path)
-              %li
-                = link_to('<i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Tài liệu đã thích'.html_safe, documents_liked_path)  
-              %li
-                = link_to('<i class="fa fa-file-o" aria-hidden="true"></i> Tài liệu của tôi'.html_safe, user_upload_documents_path)    
+              - unless current_user.role === "admin"
+                %li
+                  %a{:href => "#", data: {toggle: "modal", target: "#myModal"}}
+                    %i.lnr.lnr-user
+                    %span Thông tin của tôi
+                %li
+                  = link_to('<i class="fa fa-cog" aria-hidden="true"></i> Cài đặt'.html_safe, edit_user_registration_path)
+                %li
+                  = link_to('<i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Tài liệu đã thích'.html_safe, documents_liked_path)
+                %li
+                  = link_to('<i class="fa fa-file-o" aria-hidden="true"></i> Tài liệu của tôi'.html_safe, user_upload_documents_path) 
               %li
                 = link_to('<i class="lnr lnr-exit" aria-hidden="true"></i> Đăng xuất'.html_safe, 
-                    destroy_user_session_path, method: :delete, data: {confirm: "Bạn thật sự muốn thoát"})             
-    .navbar-btn.navbar-right.padding-20
-      -# %button.btn-toggle-fullwidth{:type => "button"}
-      -#   %i.lnr.lnr-arrow-right-circle
-      = link_to('<i class="fa fa-cloud-upload fa-2x" aria-hidden="true" data-toggle="tooltip" title="Upload Tài liệu"></i>'.html_safe, new_document_path) if user_signed_in?
+                    destroy_user_session_path, method: :delete, data: {confirm: "Bạn thật sự muốn thoát"})
+      - if current_user.role === "admin"
+        .navbar-btn.navbar-left.padding-20
+          = link_to '<i class="fa fa-dashcube" aria-hidden="true"></i> Quản lý website'.html_safe, rails_admin_path, class: "btn btn-warning"
+      - else                  
+        .navbar-btn.navbar-right.padding-20
+          -# %button.btn-toggle-fullwidth{:type => "button"}
+          -#   %i.lnr.lnr-arrow-right-circle
+          = link_to '<i class="fa fa-cloud-upload" aria-hidden="true" data-toggle="tooltip" title="Upload Tài liệu"></i> Đăng tài liệu'.html_safe, new_document_path, class: "btn btn-info"
 = render partial: 'shared/modal_user'
