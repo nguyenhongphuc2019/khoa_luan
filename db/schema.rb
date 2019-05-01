@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_01_052640) do
+ActiveRecord::Schema.define(version: 2019_05_01_163348) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -179,6 +179,22 @@ ActiveRecord::Schema.define(version: 2019_05_01_052640) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "report_documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "document_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_report_documents_on_document_id"
+    t.index ["user_id"], name: "index_report_documents_on_user_id"
+  end
+
+  create_table "reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "document_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_reports_on_document_id"
+  end
+
   create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -208,6 +224,7 @@ ActiveRecord::Schema.define(version: 2019_05_01_052640) do
     t.integer "birth_day"
     t.string "state"
     t.string "main_major"
+    t.string "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -251,6 +268,9 @@ ActiveRecord::Schema.define(version: 2019_05_01_052640) do
   add_foreign_key "keywords", "verbs"
   add_foreign_key "likes", "documents"
   add_foreign_key "likes", "users"
+  add_foreign_key "report_documents", "documents"
+  add_foreign_key "report_documents", "users"
+  add_foreign_key "reports", "documents"
   add_foreign_key "user_upload_documents", "documents"
   add_foreign_key "user_upload_documents", "users"
 end

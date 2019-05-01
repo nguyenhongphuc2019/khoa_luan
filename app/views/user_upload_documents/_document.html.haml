@@ -1,14 +1,14 @@
 .col-md-4
   .thumbnail.hoverable
     .pull-right
-      - if document.disabled == true
+      = link_to('<i class="fa fa-trash-o padding-5" aria-hidden="true"></i>'.html_safe, document_path(document),
+            method: :delete, data: {confirm: t(".confirm")})
+      - if document.disabled === true
         .alert.alert-danger
           Tài liệu của bạn đã bị khóa bởi quản trị viên của hệ thống.
       - else
         = link_to('<i class="fa fa-eye padding-5" aria-hidden="true"></i>'.html_safe, document)
         = link_to('<i class="fa fa-pencil-square-o padding-5" aria-hidden="true"></i>'.html_safe, edit_document_path(document))
-        = link_to('<i class="fa fa-trash-o padding-5" aria-hidden="true"></i>'.html_safe, document_path(document),
-            method: :delete, data: {confirm: t(".confirm")})
     = image_tag document.image.thumb.url, class: "img-responsive height-150"
     .profile-detail.padding-bottom-0
       .profile-info.margin-20
@@ -18,7 +18,8 @@
             Tên tài liệu:
             %span
               - if user_signed_in?
-                = link_to document.name.truncate(20), document_path(document.id), data:{ toggle: "tootip", user_id: current_user.id, document_id: document.id}, title: document.name, class: "document"
+                - if document.disabled == false
+                  = link_to document.name.truncate(20), document_path(document.id), data:{ toggle: "tootip", user_id: current_user.id, document_id: document.id}, title: document.name, class: "document"
               - else
                 = link_to document.name.truncate(20), document_path(document.id)
           %li.text-muted

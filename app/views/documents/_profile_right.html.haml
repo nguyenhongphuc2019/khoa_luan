@@ -26,6 +26,14 @@
             = document.comments.count
             lượt bình luận
         .col-md-4
-          .text-center  
-            %i.fa.fa-flag-o.fa-2x
+          .text-center
+            - unless document.is_reported(current_user).present?
+              = link_to "<i class='fa fa-flag-o fa-2x' aria-hidden='true'></i>".html_safe,
+                  document_report_documents_path(document), method: :post, remote: true
+            - else
+              = link_to "<i class='fa fa-flag fa-2x' aria-hidden='true'></i>".html_safe, 
+                  document_report_document_path(document, document.is_reported(current_user)), method: :delete, remote: true    
+          .text-center.text-info
+            = document.report_documents.count
+            lượt báo cáo vi phạm 
 = render partial: 'new_comment', locals: {document: document}

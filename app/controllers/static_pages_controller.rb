@@ -55,7 +55,7 @@ class StaticPagesController < ApplicationController
         return "Young"
       elsif (30 < age) and (age < 40)
         return "Middle"
-      elsif  (40 < age) and (age < 60)
+      elsif  age > 60
         return "Old" 
       end
     end

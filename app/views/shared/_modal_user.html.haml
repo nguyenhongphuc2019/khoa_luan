@@ -10,7 +10,10 @@
             .col-md-4
               .profile-detail.padding-0
                 .profile-info
-                  = image_tag current_user.avatar.url, alt: '', height: '', width: '', class: 'img-responsive img-rounded'
+                  - if current_user.avatar.present?
+                    = image_tag current_user.avatar.url, alt: '', height: '', width: '', class: 'img-responsive img-rounded'
+                  - else
+                    = image_tag 'user-default', alt: '', height: '', width: '', class: 'img-responsive img-rounded'  
             .col-md-4
               .profile-detail.padding-0
                 .profile-info
@@ -19,27 +22,36 @@
                   %ul.list-unstyled.list-justify
                     %li
                       %b
-                        Email
+                        Email:
                       %span
-                        = current_user.email
+                        = truncate(current_user.email, length: 20)
                     %li
                       %b
-                        Tên người dùng
+                        Tên người dùng:
                       %span
-                        = current_user.name
-                    %li
-                      %b
-                        Giới tính
-                      %span 
-                        - if current_user.gender == "2"
-                          Nữ
+                        - if current_user.name.present?
+                          = current_user.name
                         - else
-                          Nam
+                          Người dùng
                     %li
                       %b
-                        Năm sinh
+                        Giới tính:
                       %span
-                        = current_user.birth_day
+                        - if current_user.gender.present?
+                          - if current_user.gender == "2"
+                            Nữ
+                          - else
+                            Nam
+                        - else
+                          N/A    
+                    %li
+                      %b
+                        Năm sinh:
+                      %span
+                        - if current_user.birth_day.present?
+                          = current_user.birth_day
+                        - else
+                          N/A    
             .col-md-4
               .profile-detail.padding-0
                 .profile-info
@@ -47,16 +59,22 @@
                   %ul.list-unstyled.list-justify
                     %li
                       %b
-                        Trình độ
+                        Trình độ:
                       %span
+                      - if current_user.state.present?
                         = current_user.state
+                      - else
+                        N/A    
                     %li
                       %b
-                        Chuyên ngành chính
+                        Chuyên ngành chính:
                       %span
-                        %ul.pager
-                        - current_user.main_major.to_a.each do | major |
-                          %li
-                            = major
+                        %ul
+                        - if current_user.main_major.present?
+                          - current_user.main_major.to_a.each do | major |
+                            %li
+                              = major
+                        - else
+                          N/A        
       .modal-footer.border-none
         = link_to 'Chỉnh sửa thông tin', edit_user_registration_path, class: "btn btn-default"
