@@ -1,0 +1,31 @@
+.col-md-4
+  .thumbnail.hoverable
+    .pull-right
+      - if liked.document.disabled == true
+        .alert.alert-danger
+          Tài liệu này đã bị khóa bởi quản trị viên của hệ thống.
+    .profile-detail.padding-bottom-0
+      .profile-info.margin-20
+        %ul.list-unstyled.list-justify
+          %li.text-muted
+            Tên tài liệu:
+            %span
+              - if user_signed_in?
+                = link_to liked.document.name.truncate(20), document_path(liked.document.id), data:{ toggle: "tootip", user_id: current_user.id, document_id: liked.document.id}, title: liked.document.name, class: "document"
+              - else
+                = link_to liked.document.name.truncate(20), document_path(liked.document.id)
+          %li.text-muted
+            Tác giả:
+            %span
+              = liked.document.author_name.truncate(20)
+          %li.text-muted
+            Thể loại:
+            %span
+              = link_to( liked.document.category.name, category_path(liked.document.category))   
+          %li.text-muted
+            Loại tài liệu:
+            %span
+              = liked.document.language.name
+              = fa_icon load_icon(liked.document.type_doc), text: liked.document.type_doc
+              = link_to '<i class="fa fa-download" aria-hidden="true" data-toggle="tooltip" title="tải xuống ngay"></i>'.html_safe,
+              asset_path(liked.document.source_file), download: liked.document.source_file   

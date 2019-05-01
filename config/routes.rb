@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount RailsAdmin::Engine => "/admin", as: "rails_admin"
   root "static_pages#index"
+  get "/documents_liked", to: "documents_liked#index", as: "documents_liked"
   resources :keywords, only: :index
   resources :categories, only: %i(show)
   resources :user_upload_documents, only: :index
