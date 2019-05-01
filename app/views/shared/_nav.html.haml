@@ -14,7 +14,7 @@
             class: "btn btn-info")    
         = link_to('<i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập'.html_safe, new_user_session_path, 
             class: "btn btn-info")
-    - if current_user
+    - if user_signed_in?
       #nav-menu
         %ul.nav.navbar-nav.navbar-right
           %li.dropdown
@@ -36,6 +36,8 @@
                   %span Thông tin của tôi
               %li
                 = link_to('<i class="fa fa-cog" aria-hidden="true"></i> Cài đặt'.html_safe, edit_user_registration_path)
+              %li
+                = link_to('<i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Tài liệu đã thích'.html_safe, documents_liked_path)  
               %li
                 = link_to('<i class="fa fa-file-o" aria-hidden="true"></i> Tài liệu của tôi'.html_safe, user_upload_documents_path)    
               %li

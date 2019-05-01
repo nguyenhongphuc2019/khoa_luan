@@ -1,0 +1,7 @@
+%h2.text-center.text-info Tài liệu bạn đã thích
+- if @likeds.present?
+  = render partial: 'document', collection: @likeds, as: :liked
+- else
+  %h6.text-center.text-mute Bạn chưa thích tài liệu nào
+  %hr/   
+  

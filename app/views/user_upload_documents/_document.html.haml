@@ -1,10 +1,14 @@
 .col-md-4
   .thumbnail.hoverable
     .pull-right
-      = link_to('<i class="fa fa-eye padding-5" aria-hidden="true"></i>'.html_safe, document)
-      = link_to('<i class="fa fa-pencil-square-o padding-5" aria-hidden="true"></i>'.html_safe, edit_document_path(document))
-      = link_to('<i class="fa fa-trash-o padding-5" aria-hidden="true"></i>'.html_safe, document_path(document),
-        method: :delete, data: {confirm: t(".confirm")})
+      - if document.disabled == true
+        .alert.alert-danger
+          Tài liệu của bạn đã bị khóa bởi quản trị viên của hệ thống.
+      - else
+        = link_to('<i class="fa fa-eye padding-5" aria-hidden="true"></i>'.html_safe, document)
+        = link_to('<i class="fa fa-pencil-square-o padding-5" aria-hidden="true"></i>'.html_safe, edit_document_path(document))
+        = link_to('<i class="fa fa-trash-o padding-5" aria-hidden="true"></i>'.html_safe, document_path(document),
+            method: :delete, data: {confirm: t(".confirm")})
     = image_tag document.image.thumb.url, class: "img-responsive height-150"
     .profile-detail.padding-bottom-0
       .profile-info.margin-20
