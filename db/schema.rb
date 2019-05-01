@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_30_032243) do
+ActiveRecord::Schema.define(version: 2019_05_01_052640) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2019_04_30_032243) do
     t.string "image"
     t.string "type_doc"
     t.bigint "language_id"
+    t.boolean "disabled", default: false
     t.index ["category_id"], name: "index_documents_on_category_id"
     t.index ["language_id"], name: "index_documents_on_language_id"
   end

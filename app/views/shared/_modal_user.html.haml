@@ -1,14 +1,61 @@
 #myModal.modal.fade{:role => "dialog"}
   .modal-dialog.modal-lg
     .modal-content
-      .modal-header
+      .modal-header.border-none
         %button.close{"data-dismiss" => "modal", :type => "button"} ×
         %h4.modal-title Thông tin người dùng
-      .modal-body
+      .modal-body.padding-0
         .row
-          .col-md-6.col-sm-12
-            1
-          .col-md-6.col-sm-12
-            1           
-      .modal-footer
-        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close  
+          .col-md-4
+            .profile-detail.padding-0
+              .profile-info
+                = image_tag current_user.avatar.url, alt: '', height: '', width: '', class: 'img-responsive img-rounded'
+          .col-md-4
+            .profile-detail.padding-0
+              .profile-info
+                %h4.heading
+                  Thông tin cơ bản
+                %ul.list-unstyled.list-justify
+                  %li
+                    %b
+                      Email
+                    %span
+                      = current_user.email
+                  %li
+                    %b
+                      Tên người dùng
+                    %span
+                      = current_user.name
+                  %li
+                    %b
+                      Giới tính
+                    %span 
+                      - if current_user.gender == "2"
+                        Nữ
+                      - else
+                        Nam
+                  %li
+                    %b
+                      Năm sinh
+                    %span
+                      = current_user.birth_day
+          .col-md-4
+            .profile-detail.padding-0
+              .profile-info
+                %h4.heading &nbsp
+                %ul.list-unstyled.list-justify
+                  %li
+                    %b
+                      Trình độ
+                    %span
+                      = current_user.state
+                  %li
+                    %b
+                      Chuyên ngành chính
+                    %span
+                      %ul.pager
+                      - current_user.main_major.to_a.each do | major |
+                        %li
+                          = major
+      .modal-footer.border-none
+        = link_to 'Chỉnh sửa thông tin', edit_user_registration_path, class: "btn btn-default"

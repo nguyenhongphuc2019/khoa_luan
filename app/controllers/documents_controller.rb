@@ -8,9 +8,9 @@ class DocumentsController < ApplicationController
   
   def index
     if params[:verb_id].present?
-      @documents = Verb.find_by(id: params[:verb_id]).documents.page(params[:page]).per(10) 
+      @documents = Verb.find_by(id: params[:verb_id]).documents.where(disabled: false).page(params[:page]).per(10) 
     else
-      @documents = @q.result.page(params[:page]).per(10)
+      @documents = @q.result.where(disabled: false).page(params[:page]).per(10)
     end
   end
   
@@ -67,7 +67,7 @@ class DocumentsController < ApplicationController
   private
 
   def load_document
-    @document = Document.find_by id: params[:id]
+    @document = Document.find_by id: params[:id], disabled: false
   end
 
   def document_params
